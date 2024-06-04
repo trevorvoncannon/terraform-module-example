@@ -26,8 +26,9 @@ resource "aws_vpc" "vpc" {
 }
 
 resource "aws_subnet" "public" {
-  vpc_id     = aws_vpc.vpc.id
-  cidr_block = "172.55.1.0/24"
+  vpc_id                  = aws_vpc.vpc.id
+  cidr_block              = "172.55.1.0/24"
+  map_public_ip_on_launch = true
 }
 
 resource "aws_internet_gateway" "igw" {
@@ -51,8 +52,15 @@ resource "aws_nat_gateway" "nat_gw" {
 }
 
 resource "aws_subnet" "private" {
-  vpc_id     = aws_vpc.vpc.id
-  cidr_block = "172.55.2.0/24"
+  vpc_id            = aws_vpc.vpc.id
+  availability_zone = "us-west-2b"
+  cidr_block        = "172.55.2.0/24"
+}
+
+resource "aws_subnet" "private2" {
+  vpc_id            = aws_vpc.vpc.id
+  availability_zone = "us-west-2c"
+  cidr_block        = "172.55.3.0/24"
 }
 
 resource "aws_route_table" "nat_gateway" {
