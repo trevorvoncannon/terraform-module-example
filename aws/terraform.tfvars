@@ -6,7 +6,7 @@ private_az           = "us-west-2b"
 private_cidr_block   = "172.30.2.0/24"
 private_2_az         = "us-west-2c"
 private_2_cidr_block = "172.30.3.0/24"
-ssh_cidr             = "175.55.0.0/16"
+ssh_cidr             = "172.30.0.0/16"
 
 ec2_instance = {
   "instance" = {
