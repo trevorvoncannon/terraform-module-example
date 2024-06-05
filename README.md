@@ -1,7 +1,7 @@
 # Postscript Terraform Stack
 
 <p align="center">
-  <img src="https://github.com/trevorvoncannon/postscript/blob/main/postscript.jpg?raw=true">
+  <img src="https://github.com/trevorvoncannon/postscript/blob/main/images/postscript.jpg?raw=true">
 </p>
 
 ## What it does
