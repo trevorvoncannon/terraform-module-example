@@ -37,3 +37,33 @@ variable "private_2_cidr_block" {
   type        = string
   description = "CIDR block for private_2 subnet"
 }
+
+variable "ssh_cidr" {
+  type        = string
+  description = "CIDR block ssh ingress"
+}
+
+variable ec2_instance {
+  type = map(object({
+  instance_name = string
+  ami           = string
+  instance_type = string
+  key_name      = string
+  subnet_id     = string
+  root_block_device_volume_size = number
+  root_block_device_volume_type = string
+  }))
+}
+
+variable db_instance {
+  type = map(object({
+  allocated_storage   = number
+  db_name             = string
+  engine              = string
+  engine_version      = string
+  instance_class      = string
+  username            = string
+  password            = string
+  skip_final_snapshot = bool
+  }))
+}

@@ -1,7 +1,7 @@
 resource "aws_security_group" "ec2-sg" {
   name        = "ec2-security-group"
   description = "Security group for ec2 instances"
-  vpc_id      = "vpc-04419b8bfcd67c7a6"
+  vpc_id      = var.vpc_ec2_id
 
   egress {
     from_port   = 0
@@ -14,26 +14,27 @@ resource "aws_security_group" "ec2-sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = [var.ssh_cidr]
   }
 }
 
 
 resource "aws_instance" "instance" {
-  ami           = "ami-0eb9d67c52f5c80e5"
-  instance_type = "t2.micro"
-  key_name      = "NOC"
-  subnet_id     = "subnet-04d918f7993678f7e"
+  for_each      = var.ec2_instance
+  ami           = each.value["ami"]
+  instance_type = each.value["instance_type"]
+  key_name      = each.value["key_name"]
+  subnet_id     = each.value["subnet_id"]
   vpc_security_group_ids = [
     aws_security_group.ec2-sg.id
   ]
 
   root_block_device {
-    volume_size = 30
-    volume_type = "gp3"
+    volume_size = each.value["root_block_device_volume_size"]
+    volume_type = each.value["root_block_device_volume_type"]
   }
 
-  #tags = {
-  #  Name        = "${var.instance_name}"
-  #}
+  tags = {
+    Name        = "${each.value["instance_name"]}"
+  }
 }
