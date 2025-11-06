@@ -25,7 +25,7 @@ ec2_instance = {
     instance_type = "t2.micro"
     key_name      = "mykey"
     subnet_id     = "subnet-04d918f7993678f7e"
-    ssh_cidr      = "172.30.0.0/16"
+    ssh_cidr      = "172.30.0.0/22"
     root_block_device_volume_size = 20
     root_block_device_volume_type = "gp3"
   }
