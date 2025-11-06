@@ -1,5 +1,0 @@
-projects:
-  - name: my-dev
-    dir: aws
-    opentofu: false
-    terraform: true
